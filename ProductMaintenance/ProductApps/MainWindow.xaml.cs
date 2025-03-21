@@ -29,11 +29,16 @@ namespace ProductApps
 
         private void calculateButton_Click(object sender, RoutedEventArgs e)
         {
+            const decimal DELIVERY_CHARGE = 25.0m; //added by Kingson 22/03/2025
+            decimal total_charge; //added by Kingson 22/03/2025
+
             try
             {
                 cProduct = new Product(Convert.ToDecimal(priceTextBox.Text), Convert.ToInt16(quantityTextBox.Text));
                 cProduct.calTotalPayment();
                 totalPaymentTextBlock.Text = Convert.ToString(cProduct.TotalPayment);
+                total_charge = Convert.ToDecimal(cProduct.TotalPayment) + DELIVERY_CHARGE; //added by Kingson 22/03/2025
+                totalChargeTextBox.Text = Convert.ToString(total_charge); //added by Kingson 22/03/2025
             }
             catch (FormatException)
             {
@@ -47,6 +52,7 @@ namespace ProductApps
             priceTextBox.Text = "";
             quantityTextBox.Text = "";
             totalPaymentTextBlock.Text = "";
+            totalChargeTextBox.Text = ""; //added by Kingson 22/03/2025
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
