@@ -31,6 +31,7 @@ namespace ProductApps
         {
             const decimal DELIVERY_CHARGE = 25.0m; //added by Kingson 22/03/2025
             const decimal WRAP_CHARGE = 5.0m; //added by Kingson 22/03/2025
+            const decimal GST = 0.1m;
             decimal total_charge; //added by Kingson 22/03/2025
 
             try
@@ -42,6 +43,8 @@ namespace ProductApps
                 totalChargeTextBox.Text = Convert.ToString(total_charge); //added by Kingson 22/03/2025
                 total_charge = Convert.ToDecimal(cProduct.TotalPayment) + DELIVERY_CHARGE + WRAP_CHARGE; //added by Kingson 22/03/2025
                 totalChargeAfterWrapTextBlock.Text = Convert.ToString(total_charge); //added by Kingson 22/03/2025
+                total_charge = (Convert.ToDecimal(cProduct.TotalPayment) + DELIVERY_CHARGE + WRAP_CHARGE) * ( 1 + GST ); //added by Kingson 22/03/2025
+                totalChargeAfterGSTTextBlock.Text = Convert.ToString(total_charge); //added by Kingson 22/03/2025
             }
             catch (FormatException)
             {
@@ -57,6 +60,7 @@ namespace ProductApps
             totalPaymentTextBlock.Text = "";
             totalChargeTextBox.Text = ""; //added by Kingson 22/03/2025
             totalChargeAfterWrapTextBlock.Text = ""; //added by Kingson 22/03/2025
+            totalChargeAfterGSTTextBlock.Text = ""; //added by Kingson 22/03/2025
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
